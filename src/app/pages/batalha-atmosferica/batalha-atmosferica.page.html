@@ -1,0 +1,100 @@
+<ion-content class="ion-no-padding">
+  <div class="stars"></div>
+
+  <!-- MENU -->
+  <div class="wood-frame" *ngIf="screen === 'start'">
+    <div class="game center">
+      <div class="plaque"><span class="rivet"></span> FARMGUARDIANS <span class="rivet"></span></div>
+      <h1 class="title">Battle Against <span style="color:#ffd46a">Pollution</span></h1>
+      <p class="subtitle">Answer correctly to fight the pollution affecting agriculture!</p>
+      <div class="cta">
+        <button class="btn btn-primary big" (click)="startGame()">Start Mission</button>
+        <button class="btn btn-ghost big" (click)="(false)">How to Play</button>
+      </div>
+      <p class="subtitle hint">You and Pollution start with 100% life. Each correct answer removes 25% of Pollution's HP; each wrong answer removes 25% of yours. 5 questions. Time: 15s.</p>
+    </div>
+  </div>
+
+  <!-- ARENA -->
+  <div class="wood-frame" *ngIf="screen === 'battle'">
+    <div class="game">
+      <div class="topbar">
+        <div class="plaque"><span class="rivet"></span> ARENA <span class="rivet"></span></div>
+        <div class="badge">Question {{ round + 1 }}/{{ total }}</div>
+      </div>
+
+      <div class="arena">
+        <!-- Hero -->
+        <div class="char hero">
+          <div class="sprite hero">
+            <img [src]="heroSrc" class="char-img" alt="Hero">
+          </div>
+          <div class="name">YOU</div>
+          <div class="hpframe">
+            <div class="hp" [class.warn]="heroHP<=60&&heroHP>30" [class.danger]="heroHP<=30"
+                 [style.width.%]="heroHP"></div>
+          </div>
+        </div>
+
+        <!-- Villain -->
+        <div class="char villain">
+          <div class="sprite villain">
+            <img [src]="villainSrc" class="char-img" alt="Pollution Villain">
+          </div>
+          <div class="name">POLLUTION</div>
+          <div class="hpframe">
+            <div class="hp danger" [style.width.%]="villainHP"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hud">
+        <div class="elixir"><span class="droplet"></span> <span>{{ time }}s</span></div>
+        <div class="progress"><div class="fill" [style.width.%]="progressPct"></div></div>
+        <div class="gold"><span class="coin"></span> <span>{{ score }}</span></div>
+      </div>
+
+      <div class="parch-card" *ngIf="cur as c">
+        <div class="question">{{ c.q }}</div>
+
+        <div class="answers">
+          <button
+            *ngFor="let opt of c.a; let i = index"
+            class="btn"
+            [class.correct]="lock && i === c.correct"
+            [class.wrong]="lock && i === selectedIndex && i !== c.correct"
+            [disabled]="lock"
+            (click)="handleAnswer(i)">
+            {{ opt }}
+          </button>
+        </div>
+
+        <div class="footer">
+          <button class="btn btn-ghost" type="button" (click)="skipMinus5s()">Skip (-5s)</button>
+          <button class="btn btn-primary" type="button" [disabled]="!lock" (click)="nextRound()">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- END -->
+  <div class="wood-frame" *ngIf="screen === 'end'">
+    <div class="game center">
+      <div class="plaque"><span class="rivet"></span> RESULT <span class="rivet"></span></div>
+      <h2 class="title">{{ villainHP <= 0 || (round >= total-1 && villainHP <= heroHP) ? 'Victory!' : 'Defeat…' }}</h2>
+      <p class="subtitle">
+        <ng-container *ngIf="villainHP <= 0 || (round >= total-1 && villainHP <= heroHP); else lose">
+          Pollution has been controlled! Points: {{ score }}. Your HP: {{ heroHP }}%.
+        </ng-container>
+        <ng-template #lose>
+          Pollution took over… Points: {{ score }}. Try again!
+        </ng-template>
+      </p>
+      <div class="cta">
+        <button class="btn btn-primary big" (click)="startGame()">Play Again</button>
+        <button class="btn btn-ghost big" (click)="screen='start'">Menu</button>
+        <button class="btn btn-ghost big" (click)="maePoluicao()">Next Challenge</button>
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,211 @@
+<ion-content [fullscreen]="true" class="fundo-fogo">
+
+  <!-- Painel lateral direito: Satélite/Dados NASA -->
+<nav class="right-dock" aria-label="Camadas & Dados NASA">
+  <!-- LANDSAT -->
+  <a class="" href="https://www.earthdata.nasa.gov/topics/land-surface/land-surface-temperature " title="LANDSAT" style="margin-left: 5px;">
+    <span class="round icon icon-landsat" aria-hidden="true">
+      <!-- satélite -->
+      <svg viewBox="0 0 24 24">
+        <rect x="10" y="10" width="4" height="4" rx="1" fill="#ffffff"/>
+        <path d="M5 7l5 5M19 7l-5 5M7 19l5-5M17 19l-5-5" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </span>
+    <span class="label" style="    color: #fff;
+    font-size: 8px;">LANDSAT</span>
+  </a>
+
+  <!-- NDVI -->
+   <!-- (click)="proximo()" -->
+  <a class="" href="https://www.earthdata.nasa.gov/topics/land-surface/normalized-difference-vegetation-index-ndvi" title="NDVI" style="margin-left: 5px;">
+    <span class="round icon icon-ndvi" aria-hidden="true">
+      <!-- folha/gráfico -->
+      <svg viewBox="0 0 24 24">
+        <path d="M6 16c3-6 6-8 12-8" stroke="#ffffff" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M8 14c0-4 4-8 8-8-2 5-6 8-8 8z" fill="#ffffff"/>
+      </svg>
+    </span>
+    <span class="label" style="    color: #fff;
+    font-size: 8px;">NDVI</span>
+  </a>
+
+  <!-- FIRMS -->
+  <a class="" href="https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@0.0,0.0,3.0z" title="FIRMS – focos de calor" style="margin-left: 5px;">
+    <span class="round icon icon-firms" aria-hidden="true">
+      <!-- chama dentro de escudo -->
+      <svg viewBox="0 0 24 24">
+        <path d="M12 3l7 3v5c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6l7-3z" fill="#ffffff"/>
+        <path d="M12 8c2 1 3 2.5 3 4.2 0 1.8-1.2 3-3 3s-3-1.2-3-3c0-1.6 1-3.2 3-4.2z" fill="#e64a19"/>
+      </svg>
+    </span>
+    <span class="label" style="color: #fff;
+    font-size: 8px;">FIRMS</span>
+  </a>
+
+  <!-- SMAP -->
+  <a class="" href="https://smap.jpl.nasa.gov" title="SMAP – Umidade do Solo" style="margin-left: 5px;">
+    <span class="round icon icon-smap" aria-hidden="true">
+      <!-- gota/solo -->
+      <svg viewBox="0 0 24 24">
+        <path d="M12 3s-5 6-5 9a5 5 0 1010 0c0-3-5-9-5-9z" fill="#ffffff"/>
+        <rect x="5" y="17" width="14" height="3" rx="1.5" fill="#8ecae6"/>
+      </svg>
+    </span>
+  </a>
+   <span class="label" style="color: #fff;
+    font-size: 8px;">SMAPP</span>
+
+  <a class="" href="https://modis.gsfc.nasa.gov" title="SMAP – Umidade do Solo" style="margin-left: 5px;">
+    <span class="round icon icon-smap" aria-hidden="true">
+      <!-- gota/solo -->
+      <svg viewBox="0 0 24 24">
+        <path d="M12 3s-5 6-5 9a5 5 0 1010 0c0-3-5-9-5-9z" fill="#ffffff"/>
+        <rect x="5" y="17" width="14" height="3" rx="1.5" fill="#8ecae6"/>
+      </svg>
+    </span>
+  </a>
+   <span class="label" style="color: #fff;
+    font-size: 8px;">MODIS</span>
+</nav>
+
+<!-- https://modis.gsfc.nasa.gov -->
+<!-- fim -->
+
+<!-- Painel de botões à esquerda -->
+<div class="hud-buttons left" role="toolbar" aria-label="Ferramentas">
+  <!-- Água -->
+  <a href="https://climate.nasa.gov/" class="hud-btn btn-water" aria-label="Água" title="Monitorar umidade">
+    <span class="icon">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 2C12 2 6 9 6 13.5 6 17.09 8.91 20 12.5 20S19 17.09 19 13.5C19 9 12 2 12 2z"
+              fill="#ffffff"/>
+      </svg>
+    </span>
+  </a>
+
+  <!-- Sol -->
+  <a class="hud-btn btn-sun" aria-label="Sol" title="Monitorar radiação" href="https://solarsystem.nasa.gov/solar-system/the-sun/overview/">
+    <span class="icon">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5" fill="#ffffff"/>
+        <g stroke="#ffffff" stroke-width="2" stroke-linecap="round">
+          <line x1="12" y1="1.5" x2="12" y2="5"/>
+          <line x1="12" y1="19" x2="12" y2="22.5"/>
+          <line x1="1.5" y1="12" x2="5" y2="12"/>
+          <line x1="19" y1="12" x2="22.5" y2="12"/>
+          <line x1="4.2" y1="4.2" x2="6.7" y2="6.7"/>
+          <line x1="17.3" y1="17.3" x2="19.8" y2="19.8"/>
+          <line x1="4.2" y1="19.8" x2="6.7" y2="17.3"/>
+          <line x1="17.3" y1="6.7" x2="19.8" y2="4.2"/>
+        </g>
+      </svg>
+    </span>
+  </a>
+
+  <!-- Ação (seta) -->
+  <!-- <button class="hud-btn btn-up" aria-label="Ação" title="Ação preventiva" (click)="onAction?.()">
+    <span class="icon">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 4l6 6h-4v7H10v-7H6l6-6z" fill="#ffffff"/>
+      </svg>
+    </span>
+  </button> -->
+
+  <!-- Rede -->
+  <a href="https://www.nasa.gov" class="hud-btn btn-net" aria-label="Rede" title="Rede de dados" >
+    <span class="icon">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="6" r="3" fill="#ffffff"/>
+        <circle cx="6" cy="18" r="3" fill="#ffffff"/>
+        <circle cx="18" cy="18" r="3" fill="#ffffff"/>
+        <path d="M12 9v3M9 15l3-3 3 3" stroke="#ffffff" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </span>
+  </a>
+</div>
+
+<!-- inicio topo-->
+<!-- HUD superior (sobre o mapa) -->
+<div class="top-hud" role="toolbar" aria-label="Recursos" style="    margin-right: 15px;
+    width: 95%;">
+  <!-- Água -->
+  <button class="resource pill water" aria-label="Água">
+    <span class="badge">
+      <!-- ícone: gota -->
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 2S6 9 6 13.5C6 17.1 8.9 20 12.5 20S19 17.1 19 13.5 12 2 12 2z" fill="#fff"/>
+      </svg>
+    </span>
+    <div class="track"><div class="fill" style="width:0%"></div></div>
+    <span class="value">0</span>
+    <span class="warn">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" fill="#F7C948"/>
+        <path d="M12 7v7" stroke="#7A5E00" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="12" cy="17" r="1.4" fill="#7A5E00"/>
+      </svg>
+    </span>
+  </button>
+
+  <!-- Produção (fruta/moeda) -->
+  <button class="resource pill produce" aria-label="Produção">
+    <span class="badge">
+      <!-- ícone: fruta -->
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="13" r="7" fill="#FFD166"/>
+        <path d="M12 6c2-1.6 3.4-1.6 5.2-.6-1.8 1.7-3.4 2-5.2.6z" fill="#7AC142"/>
+        <path d="M9 4c1 .4 2 .4 3 0-.6 1.7-1.2 2.6-3 3 0-1 .2-2 .0-3z" fill="#5A8C2B"/>
+      </svg>
+    </span>
+    <div class="track"><div class="fill" style="width:100%"></div></div>
+    <span class="value">5/5</span>
+    <span class="warn">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" fill="#F7C948"/>
+        <path d="M12 7v7" stroke="#7A5E00" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="12" cy="17" r="1.4" fill="#7A5E00"/>
+      </svg>
+    </span>
+  </button>
+
+  <!-- Vida (corações) -->
+  <button class="resource pill health" aria-label="Vida">
+    <span class="badge">
+      <!-- ícone: coração -->
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 21s-7-4.6-9.2-8C1.1 10.1 2.5 6.9 5.6 6.4c1.7-.3 3.4.5 4.4 1.9 1-1.4 2.7-2.2 4.4-1.9 3.1.5 4.5 3.7 2.8 6.6C19 16.4 12 21 12 21z" fill="#fff"/>
+      </svg>
+    </span>
+    <div class="track"><div class="fill" style="width:100%"></div></div>
+    <span class="value">3/3</span>
+    <span class="warn">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" fill="#F7C948"/>
+        <path d="M12 7v7" stroke="#7A5E00" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="12" cy="17" r="1.4" fill="#7A5E00"/>
+      </svg>
+    </span>
+  </button>
+
+
+</div>
+
+  <div class="mapa-container">
+    <!-- Ícones de vilãs do fogo e fumaça -->
+    <img src="assets/vilao-fogo.png" alt="Vilã Fogo" class="icone-fogo fogo1">
+    <img src="assets/vilao-fogo.png" alt="Vilã Fogo" class="icone-fogo fogo2">
+
+
+    <div class="fumaca fumaca1"></div>
+    <div class="fumaca fumaca2"></div>
+  </div>
+
+  <!-- Cientista fixa no rodapé -->
+  <div class="footer-nasa">
+    <a routerLink="/batalha-seca" title="Ir para missão da seca" class="footer-nasa-link">
+      <img src="assets/cientista-nasa.png" alt="Cientista NASA" class="footer-nasa-img" (click)="goToSeca()">>
+    </a>
+  </div>
+
+</ion-content>

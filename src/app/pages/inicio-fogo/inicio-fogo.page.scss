@@ -1,0 +1,492 @@
+/* Imagem de fundo ocupando a tela inteira */
+.fundo-fogo {
+  --background: none;
+  background: url('../../../assets/desafio_fogo.jpg') no-repeat center center / cover;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Container principal */
+.mapa-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+/* Texto sobreposto no topo do mapa */
+.instrucoes {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  background: rgba(0, 0, 0, 0.55);
+  border-radius: 10px;
+  color: #fff;
+  padding: 10px 14px;
+  font-family: 'Trebuchet MS', sans-serif;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+}
+
+.instrucoes h2 {
+  font-size: 1.3rem;
+  margin: 0 0 4px 0;
+  font-weight: bold;
+}
+
+/* Ícones da vilã fogo */
+.icone-fogo {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  z-index: 8;
+  animation: flutuar 3s ease-in-out infinite;
+}
+
+/* Posições dos focos de fogo (ajuste conforme o mapa) */
+.fogo1 { bottom: 22%; left: 16%; }
+.fogo2 { top: 22%; left: 22%; }
+
+/* Fumaça (efeito visual básico) */
+.fumaca {
+  position: absolute;
+  width: 45px;
+  height: 70px;
+  background: radial-gradient(ellipse at center, rgba(50,50,50,0.6) 0%, rgba(0,0,0,0) 70%);
+  filter: blur(4px);
+  border-radius: 50%;
+  animation: subir 4s linear infinite;
+}
+
+.fumaca1 { bottom: 23%; left: 23%; animation-delay: 0s; }
+.fumaca2 { top: 25%; left: 30%; animation-delay: 1.5s; }
+
+/* Animação de flutuar dos ícones */
+@keyframes flutuar {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Animação de subir da fumaça */
+@keyframes subir {
+  0% { transform: translateY(0); opacity: 0.6; }
+  50% { opacity: 0.4; }
+  100% { transform: translateY(-60px); opacity: 0; }
+}
+
+/* --- Painel vertical de botões HUD --- */
+.hud-buttons{
+  position: absolute;
+  right: 10px;
+  top: 80px;            /* ajuste conforme seu header */
+  display: grid;
+  gap: 10px;
+  z-index: 100;         /* acima do mapa */
+  pointer-events: auto; /* permite clique mesmo sobre o mapa */
+}
+
+/* Botão base */
+.hud-btn{
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  box-shadow:
+    0 6px 0 rgba(0,0,0,.25),
+    0 10px 18px rgba(0,0,0,.35),
+    inset 0 2px 0 rgba(255,255,255,.35);
+  transition: transform .06s ease, filter .12s ease, box-shadow .12s ease;
+}
+
+.hud-btn:active{
+  transform: translateY(1px);
+  box-shadow:
+    0 4px 0 rgba(0,0,0,.25),
+    0 6px 12px rgba(0,0,0,.35),
+    inset 0 1px 0 rgba(255,255,255,.25);
+}
+
+.hud-btn .icon{
+  width: 28px;
+  height: 28px;
+}
+.hud-btn svg{
+  width: 100%; height: 100%;
+  display: block;
+}
+
+/* Variações de cor (inspiradas na imagem) */
+.btn-water{
+  background: linear-gradient(180deg, #6db4ff, #2f7fd6);
+  border: 2px solid #1e5fa7;
+}
+.btn-sun{
+  background: linear-gradient(180deg, #ffd66b, #f3a400);
+  border: 2px solid #c27d00;
+}
+.btn-up{
+  background: linear-gradient(180deg, #8be26b, #43b02a);
+  border: 2px solid #2c801c;
+}
+.btn-net{
+  background: linear-gradient(180deg, #c790ff, #8c4bd6);
+  border: 2px solid #5b299e;
+}
+
+/* Contorno/“bordas” estilo cartão */
+.hud-btn{
+  outline: none;
+  box-shadow:
+    0 6px 0 rgba(0,0,0,.25),
+    0 10px 18px rgba(0,0,0,.35),
+    inset 0 2px 0 rgba(255,255,255,.35),
+    inset 0 -2px 0 rgba(0,0,0,.18);
+}
+
+/* Responsivo: reduzir em telas muito estreitas */
+@media (max-width: 380px){
+  .hud-btn{ width: 50px; height: 50px; }
+  .hud-btn .icon{ width: 24px; height: 24px; }
+}
+
+
+/* --- Painel de botões HUD lateral esquerda --- */
+.hud-buttons.left {
+  position: absolute;
+  left: 10px;          /* muda de right para left */
+  top: 80px;           /* distância do topo */
+  display: grid;
+  gap: 10px;
+  z-index: 100;        /* acima do mapa */
+  pointer-events: auto;
+}
+
+/* Botão base */
+.hud-btn {
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  box-shadow:
+    0 6px 0 rgba(0,0,0,.25),
+    0 10px 18px rgba(0,0,0,.35),
+    inset 0 2px 0 rgba(255,255,255,.35);
+  transition: transform .06s ease, filter .12s ease, box-shadow .12s ease;
+}
+
+.hud-btn:active {
+  transform: translateY(1px);
+  box-shadow:
+    0 4px 0 rgba(0,0,0,.25),
+    0 6px 12px rgba(0,0,0,.35),
+    inset 0 1px 0 rgba(255,255,255,.25);
+}
+
+.hud-btn .icon {
+  width: 28px;
+  height: 28px;
+}
+.hud-btn svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Cores base */
+.btn-water {
+  background: linear-gradient(180deg, #6db4ff, #2f7fd6);
+  border: 2px solid #1e5fa7;
+}
+.btn-sun {
+  background: linear-gradient(180deg, #ffd66b, #f3a400);
+  border: 2px solid #c27d00;
+}
+.btn-up {
+  background: linear-gradient(180deg, #8be26b, #43b02a);
+  border: 2px solid #2c801c;
+}
+.btn-net {
+  background: linear-gradient(180deg, #c790ff, #8c4bd6);
+  border: 2px solid #5b299e;
+}
+
+/* Sombras estilo botão de jogo */
+.hud-btn {
+  outline: none;
+  box-shadow:
+    0 6px 0 rgba(0,0,0,.25),
+    0 10px 18px rgba(0,0,0,.35),
+    inset 0 2px 0 rgba(255,255,255,.35),
+    inset 0 -2px 0 rgba(0,0,0,.18);
+}
+
+/* Responsivo */
+@media (max-width: 380px) {
+  .hud-btn {
+    width: 50px;
+    height: 50px;
+  }
+  .hud-btn .icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* container no topo, sobre o mapa */
+.top-hud{
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 120;         /* acima do mapa/botões */
+  padding: 4px 6px;
+}
+
+/* pílula base */
+.resource.pill{
+  --bg:#5a4638;        /* marrom base */
+  --stroke:#3a2b22;
+  appearance:none; border:0; cursor:pointer;
+  display:flex; align-items:center; gap:8px;
+  height: 34px;
+  min-width: 150px;
+  padding: 0 8px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #6d5646, var(--bg));
+  box-shadow:
+    0 6px 0 rgba(0,0,0,.25),
+    0 10px 18px rgba(0,0,0,.35),
+    inset 0 2px 0 rgba(255,255,255,.25),
+    inset 0 -2px 0 rgba(0,0,0,.18);
+  border: 2px solid var(--stroke);
+  color: #fff;
+  font-weight: 800;
+  text-shadow: 0 1px 0 rgba(0,0,0,.35);
+}
+
+/* ícone circular à esquerda */
+.pill .badge{
+  flex: 0 0 auto;
+  width: 26px; height: 26px; border-radius: 50%;
+  display:grid; place-items:center;
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.35), inset 0 -2px 0 rgba(0,0,0,.25);
+}
+.pill .badge svg{ width: 18px; height: 18px; display:block; }
+
+/* barra interna */
+.pill .track{
+  position: relative;
+  flex: 1 1 90px;
+  height: 12px;
+  background: #3b2e26;
+  border: 1px solid #2b1f19;
+  border-radius: 999px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.12);
+}
+.pill .fill{
+  height: 100%;
+  width: 0%;
+  border-radius: inherit;
+  transition: width .25s ease;
+}
+
+/* valor à direita */
+.pill .value{
+  min-width: 36px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* badge de aviso (moeda/! pequeno) */
+.pill .warn{
+  width: 18px; height: 18px;
+  display:grid; place-items:center;
+  margin-left: 2px;
+}
+.pill .warn svg{ width: 100%; height: 100%; }
+
+/* temas por recurso */
+.water .badge{ background: linear-gradient(180deg,#6db4ff,#2f7fd6); border:2px solid #1e5fa7; }
+.water .fill{ background: linear-gradient(90deg,#7ec9ff,#2f7fd6); }
+
+.produce .badge{ background: linear-gradient(180deg,#ffd66b,#f3a400); border:2px solid #c27d00; }
+.produce .fill{ background: linear-gradient(90deg,#ffe39d,#f3a400); }
+
+.health .badge{ background: linear-gradient(180deg,#ff7a7a,#e43737); border:2px solid #a31e1e; }
+.health .fill{ background: linear-gradient(90deg,#ffa3a3,#e43737); }
+
+/* responsivo */
+@media (max-width: 520px){
+  .resource.pill{ min-width: 120px; height: 32px; }
+  .pill .value{ min-width: 32px; font-size: .95rem; }
+}
+@media (max-width: 380px){
+  .top-hud{ gap: 6px; }
+  .resource.pill{ min-width: 108px; padding: 0 6px; }
+}
+
+/* Painel lateral direito (sobre o mapa) */
+.right-dock{
+  position: absolute;
+  right: 10px;
+  top: 90px;                   /* ajuste se houver header */
+  z-index: 110;                /* acima do mapa */
+  display: grid;
+  gap: 10px;
+  padding: 10px 8px;
+  width: 44px;
+  background:
+    linear-gradient(180deg, #7a4b2a, #5a3620);
+  border: 3px solid #3b2415;
+  border-radius: 14px;
+  box-shadow:
+    0 10px 22px rgba(0,0,0,.45),
+    inset 0 2px 0 rgba(255,255,255,.25),
+    inset 0 -2px 0 rgba(0,0,0,.25);
+}
+
+/* “rebites” nos cantos (decoração opcional) */
+.right-dock::before, .right-dock::after{
+  content:""; position:absolute; width:10px; height:10px; border-radius:50%;
+  background: radial-gradient(circle at 35% 35%, #fff, #c9c9c9 45%, #7a7a7a);
+  box-shadow: inset 0 2px 0 #ffffff77, inset 0 -2px 0 #00000044;
+}
+.right-dock::before{ left:6px; top:6px; }
+.right-dock::after { right:6px; bottom:6px; }
+
+/* cada item */
+.dock-item{
+  display:flex; align-items:center; gap:8px;
+  height: 54px;
+  padding: 6px 8px;
+  border-radius: 12px;
+  text-decoration: none;
+  color:#fff;
+  font-weight:900;
+  text-shadow: 0 1px 0 #00000066;
+  background: linear-gradient(180deg, #6b4a2f, #4a3320);
+  border: 2px solid #332213;
+  box-shadow:
+    0 6px 0 rgba(0,0,0,.25),
+    inset 0 2px 0 rgba(255,255,255,.18),
+    inset 0 -2px 0 rgba(0,0,0,.22);
+  transition: transform .06s ease, filter .12s ease, box-shadow .12s ease;
+}
+.dock-item:active{ transform: translateY(1px); }
+
+/* ícone redondo à esquerda */
+.round{
+  flex:0 0 auto;
+  width: 38px; height: 38px; border-radius: 50%;
+  display:grid; place-items:center;
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.4), inset 0 -2px 0 rgba(0,0,0,.25);
+  border: 2px solid #d19b2b;          /* aro dourado */
+}
+.round svg{ width:22px; height:22px; display:block; }
+
+/* rótulo */
+.label{
+  font-size:.85rem;
+  letter-spacing:.5px;
+}
+
+/* temas por item (cores do círculo) */
+.icon-landsat{ background: linear-gradient(180deg,#7ecbff,#2f7fd6); }
+.icon-ndvi   { background: linear-gradient(180deg,#7bd87c,#2ea63c); }
+.icon-firms  { background: linear-gradient(180deg,#ff936a,#e64a19); }
+.icon-smap   { background: linear-gradient(180deg,#9ad6ff,#4aa3d8); }
+
+/* responsivo: estreitar painel */
+@media (max-width: 420px){
+  .right-dock{ width: 60px; right: 6px; top: 78px; padding: 8px 6px; }
+  .dock-item{ height: 50px; }
+  .round{ width: 34px; height: 34px; }
+  .round svg{ width:20px; height:20px; }
+}
+
+/* ======= CIENTISTA FIXA NO RODAPÉ ======= */
+.footer-nasa {
+  position: fixed;      /* fixa mesmo ao rolar */
+  bottom: 0;
+  left: 50%;            /* centralizada horizontalmente */
+  transform: translateX(-50%);
+  z-index: 200;         /* acima do conteúdo */
+  pointer-events: none; /* não bloqueia cliques do mapa */
+  padding-bottom: 6px;
+}
+
+/* imagem */
+.footer-nasa-img {
+  width: 100%;         /* ajuste conforme desejar */
+  height: auto;
+  object-fit: contain;
+  animation: bounceIn 1.5s ease;
+  user-select: none;
+}
+
+/* Animação de leve “entrada/balanço” */
+@keyframes bounceIn {
+  0% { transform: translate(-50%, 100%); opacity: 0; }
+  60% { transform: translate(-50%, -10px); opacity: 1; }
+  100% { transform: translate(-50%, 0); }
+}
+
+.footer-nasa {
+  right: 15px;
+  left: auto;
+  transform: none;
+}
+
+/* ===== Cientista fixa no rodapé ===== */
+.footer-nasa {
+  position: fixed;         /* fixa mesmo com scroll */
+  bottom: 10px;            /* distância da base */
+  right: 15px;             /* alinhada à lateral direita */
+  z-index: 500;            /* acima de todos os outros elementos */
+  pointer-events: auto;    /* permite clique */
+}
+
+/* Link ocupa todo o espaço da imagem */
+.footer-nasa-link {
+  display: inline-block;
+  text-decoration: none;
+}
+
+/* imagem clicável */
+.footer-nasa-img {
+width: 91%;
+    height: auto;
+    /* object-fit: contain; */
+    /* border-radius: 50%; */
+    /* background: #fff; */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.45), inset 0 2px 0 rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.footer-nasa-img:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+/* Efeito de entrada */
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.footer-nasa-img {
+  animation: aparecer 1s ease;
+}
