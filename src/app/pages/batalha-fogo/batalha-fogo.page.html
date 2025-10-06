@@ -1,9 +1,14 @@
-<ion-content class="ion-no-padding"  style="background-color: burlywood;">
-  <div class="stars"></div>
+<ion-content class="ion-no-padding" style="background-color: burlywood; background-image: url('../../assets/vitoria.jpg'); background-size: cover; background-position: center;">
+
 
   <!-- MENU -->
-  <div class="wood-frame" *ngIf="screen === 'start'">
-    <div class="game center">
+  <div class="wood-frame" *ngIf="screen === 'start'" style="
+">
+    <div class="game center" style="margin-top: 220px;
+    background-color: #416241d4;
+    width: 80%;
+    margin-left: 38px;
+">
       <div class="plaque"><span class="rivet"></span> FARMGUARDIANS <span class="rivet"></span></div>
       <h1 class="title">Battle Against <span style="color:#ffd46a">Fire</span></h1>
       <p class="subtitle">Answer correctly to fight the wildfires affecting agriculture!</p>
@@ -16,7 +21,11 @@
   </div>
 
   <!-- ARENA -->
-  <div class="wood-frame" *ngIf="screen === 'battle'">
+  <div class="wood-frame" *ngIf="screen === 'battle'" style="margin-top: 220px;
+    background-color: #416241d4;
+    width: 80%;
+    margin-left: 38px;
+">
     <div class="game">
       <div class="topbar">
         <div class="plaque"><span class="rivet"></span> ARENA <span class="rivet"></span></div>
@@ -78,8 +87,12 @@
   </div>
 
   <!-- END -->
-  <div class="wood-frame" *ngIf="screen === 'end'">
-    <div class="game center">
+  <div class="wood-frame" *ngIf="screen === 'end'" style="background-image: '../../assets/vitoria.jpg';">
+    <div class="game center" style="margin-top: 220px;
+    background-color: #416241d4;
+    width: 80%;
+    margin-left: 38px;
+">
       <div class="plaque"><span class="rivet"></span> RESULT <span class="rivet"></span></div>
       <h2 class="title">{{ villainHP <= 0 || (round >= total-1 && villainHP <= heroHP) ? 'Victory!' : 'Defeat…' }}</h2>
       <p class="subtitle">
